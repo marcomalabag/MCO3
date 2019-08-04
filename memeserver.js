@@ -25,22 +25,45 @@ function findUser(accounts, filter){
 	})
 }
 
-app.post('registration', function(req, res){
-	
+app.get('/registration', function(req, res){
+	res.render('Registration.hbs', {msg:""},
+		function(err, html){
+			res.send(html)
+		})
+})
+
+app.post('/registration', function(req, res){
+	if(req.body.Confirm == re.body.password)
+	{
+		var user = new accounts({username: req.body.username, password: req.body.password})
+	}
+	else{
+		res.render('Registration.hbs', {msg:""},
+		function(err, html){
+			res.send(html)
+		})
+	}
+})
+
+app.get('/login', function(req, res){
+	res.render('login.hbs', {msg:""},
+		function(err, html){
+			res.send(html)
+		})
 })
 
 app.post('/login', function(req, res){
 	//res.send(req.body.username);
 	var user = new accounts({username: req.body.username, password: req.body.password})
 	if(findUser(accounts, {username: req.body.username}) == null){
-		res.render('invalid.hbs', {msg:"<h1>Account does not exit</h1>"},
+		res.render('login.hbs', {msg:"<h1>Account does not exit</h1>"},
 		function(err, html){
 			res.send(html)
 		})
 	}
 	else{
 		if(findUser(accounts, {username: req.body.password}) == user.password){
-			res.render('invalid.hbs', {msg:"<h1>Invalid password please try again</h1>"},
+			res.render('login.hbs', {msg:"<h1>Invalid password please try again</h1>"},
 			function(err, html){
 			res.send(html)
 			})
@@ -52,19 +75,10 @@ app.post('/login', function(req, res){
 	}
 })
 
-app.get('/invalid', function(req, res){
-	res.render('invalid.hbs', {msg:"<h1>Account does not exit</h1>"},
-	function(err, html){
-		res.send(html)
-	})
-})
 
 app.get('/', function(req, res){
 	if(req.cookies.user == undefined){
-		res.render('login.hbs', {msg:""},
-		function(err, html){
-			res.send(html)
-		})
+		res.redirect('/login')
 	}
 	else{
 		res.render('home.hbs', {username:req.cookies.user.username},
