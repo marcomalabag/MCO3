@@ -15,6 +15,16 @@ app.use(cookieParser());
 app.use(express.urlencoded());
 app.set('view engine', 'hbs')
 
+function addUser(accounts){
+	mongoose.connect(url, function(err){
+		accounts.save(function(err, u){
+			if(err) throw err;
+			console.log('Document inserted:')
+			mongoose.connection.close()
+		})
+	})
+}
+
 function findUser(accounts, filter){
 	mongoose.connect(url, function(err){
 		accounts.findOne(filter, function(err, u){
@@ -26,22 +36,86 @@ function findUser(accounts, filter){
 }
 
 app.get('/registration', function(req, res){
-	res.render('Registration.hbs', {msg:""},
+	res.render('Registration.hbs', {msg:"", colors:"white"},
 		function(err, html){
 			res.send(html)
 		})
 })
 
 app.post('/registration', function(req, res){
-	if(req.body.Confirm == re.body.password)
-	{
-		var user = new accounts({username: req.body.username, password: req.body.password})
+	var valid = "True";
+	
+	if(req.body.username == "" || req.body.password == ""){
+		if(req.body.username == "")
+		{
+			res.render('Registration.hbs', {msg:"Please enter a username", colorsU:"red"},
+			function(err, html){
+				res.send(html)
+			})
+		}
+		if(req.body.password == "")
+		{
+			res.render('Registration.hbs', {msg:"Please enter a password", colorsP:"red"},
+			function(err, html){
+				res.send(html)
+			})
+		}
+		valid = "False"
 	}
-	else{
-		res.render('Registration.hbs', {msg:""},
+	if(req.body.password == "" || req.body.Confirm == ""){
+		if(req.body.password == ""){
+			res.render('Registration.hbs', {msg:"Please enter a password", colorsP:"red"},
+			function(err, html){
+				res.send(html)
+			})
+		}
+		if(req.body.Confirm == ""){
+			res.render('Registration.hbs', {msg:"Please enter a confirm password", colorsCP:"red"},
+			function(err, html){
+				res.send(html)
+			})
+		}
+		valid = "False"
+	}
+		
+	else if(req.body.Confirm != req.body.password){
+		res.render('Registration.hbs', {msg:"Password and confirm password do not match. Please try again", colorsP:"red", colorsCP:"red"},
 		function(err, html){
 			res.send(html)
 		})
+		valid = "False"
+	}
+	
+	if(req.body.Birthday == ""){
+		res.render('Registration.hbs', {msg:"Please enter your birthday", colorsB:"red"},
+		function(err, html){
+			res.send(html)
+		})
+		valid = "False"
+	}
+	if(req.body.Email == ""){
+		res.render('Registration.hbs', {msg:"Please enter an email", colorsE:"red"},
+		function(err, html){
+			res.send(html)
+		})
+		valid = "False"
+	}
+	else if(req.body.Email.indexOf("@") == -1){
+		res.render('Registration.hbs', {msg:"Please enter a valid email", colorsE:"red"},
+		function(err, html){
+			res.send(html)
+		})
+		valid = "False"
+	}
+	if(valid == "True"){
+		var newUser = new accounts({
+			Username:req.body.username,
+			Password:req.body.password,
+			Birthday:req.body.Birthday,
+			Email:String
+		})
+		addUser(newUser)
+		
 	}
 })
 
