@@ -6,13 +6,20 @@
 <body>
 
 {{{msg}}}
+
+
 <form method="post" action="/registration">
-Username:<input type:"submit" placeholder="Firstname" name="username"><br>
-Password:<input type="password" placeholder="Password" name="password"><br>
-Confirm Password:<input type="password" placeholder="Confirm Password" name="Confirm"><br>
-Birthday:<input type="date" name="Birthday"><br>
-<input type="submit" name="submit">
+Username:<input type="text" style="background-color:{{{colorsU}}}" placeholder="Username" name="username" id="username"><br>
+Password:<input type="password" style="background-color:{{{colorsP}}}" placeholder="Password" name="password" id="Password"><br>
+Confirm Password:<input type="password" style="background-color:{{{colorsCP}}}" placeholder="Confirm Password" name="Confirm" id="Confirmation"><br>
+Birthday:<input type="date" style="background-color:{{{colorsB}}}" name="Birthday"><br>
+Email:<input type="text" style="background-color:{{{colorsE}}}" name="Email" placeholder="email" id="EmailAddress">
+<input type="submit" name="submit" >
 </form>
+<form method="get" action="/registration">
+<input type="submit" name="submit" value="cancel">
+</form>
+
 
 </body>
 </html>
