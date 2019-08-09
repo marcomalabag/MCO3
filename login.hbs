@@ -1,23 +1,38 @@
 <html>
 <head>
-<title>Login</title>
-</head>
+		<title>Memes Cooked To Perfection</title>
+		<link rel = "stylesheet" type = "text/css"  href = "memes.css">
+		<link href="https://fonts.googleapis.com/css?family=Baloo+Chettan&display=swap" rel="stylesheet">
+		<style type = "text/css">
+			body {
+				font-family: 'Baloo Chettan', cursive;
+			}
+		</style>
+	</head>
 <body>
-{{{msg}}}
+
+<div id = "header" style = "height: 50px;">
+			<form method="post" action="/login">
+				<button style = "float: left; margin-right: 0px; margin-left: 20px;" type="submit" name="button" value = "Home">Home</button>
+			</form>
+</div>
+
+<div style = "height: 270px;" id = "user">
+<form method="post" action="/login">
+Username: <input style = "border-radius: 15px;" type="text" name="username"><br>
+Password: <input style = "border-radius: 15px;" type="password" name="password"><br>
+<input type="submit" name="button" value="Login">
+</form>
 
 <form method="post" action="/login">
-Username:<input type="text" name="username"><br>
-Password:<input type="password" name="password"><br>
-<input type="submit" name="Login" value="Login">
+<input type="submit" name="button" value="Cancel" ></input>
 </form>
 
-<form method="get" action="/">
-<input type="submit" name="cancel" value="Cancel" ><br>
+<form method="post" action="/login">
+<button style = "width: 300px;" type="submit" name="button" value="Register"> Don't have an account? Register here.</button>
 </form>
-
-<form method="get" action="/registration">
-<button type="submit" name="Register" value="Register"> Don't have an account? Register here.<br>
-</form>
- 
+<br/>
+<h2 style = "color: red;">{{{msg}}}</h2>
+</div>
 </body>
 </html>
