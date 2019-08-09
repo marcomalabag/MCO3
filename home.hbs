@@ -1,0 +1,45 @@
+<html>
+	<head>
+		<title>Memes Cooked To Perfection</title>
+		<link rel = "stylesheet" type = "text/css"  href = "memes.css">
+		<link href="https://fonts.googleapis.com/css?family=Baloo+Chettan&display=swap" rel="stylesheet">
+		<style type = "text/css">
+			body {
+				font-family: 'Baloo Chettan', cursive;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<div id = "header">
+			<form method="get" action="/home">
+				<button style = "float: left; margin-right: 0px; margin-left: 20px;" type="submit" name="home" value = "Home">Home</button>
+			</form>
+			<form method="post" action="/logout">
+				<button type="submit" name="Logout" value = "Log Out">Log Out</button>
+			</form>
+		</div>
+		<div id = "user">		
+			<img id = "pfp" style = "float: left;" src = "cry.png">
+			<p style = "width: 100px; margin-left: 110px;"><u>@{{Username}}</u></p>
+			<p style = "width: 100px; margin-left: 110px;">{{User}}</p>
+			<br/>
+			<form method="get" action="/profile">
+				<button type="submit" name="profile" value = "Profile">Profile</button>
+			</form>
+			<br/>
+			<hr/>
+			<p style = "text-align: center;">Description</p>
+		</div>
+		
+		<div id = "main">
+			<img style = "float: left; margin-left: 150px; max-width: 7%; height: auto; border-radius: 75px; border-style: solid; border-color: pink; border-width: 5px; height: auto; float: left;" src = "cry.png">
+			<p style = "width: 100px; margin-left: 220px">@{{Username}}</p>
+			<img src = "mclovin.png" style = "border-radius: 15px; display: block; margin: 25px; margin-left: auto; margin-right: auto; border-style: solid; border-color: pink; min-width: 400px; border-width: 5px; max-width: 150%; height: auto;">
+			<img src = "down.png" style = "float: right; max-width: 5%; height: auto; margin-right: 150px;">
+			<img src = "ok.png" style = "float: right; max-width: 5%; height: auto; margin-right: 20px;">
+			<p style = "text-align: left; font-size: 20px; margin-left: 150px;">McLovin</p>
+			<hr/>
+		</div>
+	</body>
+</html>
