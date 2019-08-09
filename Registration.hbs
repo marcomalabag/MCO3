@@ -1,25 +1,37 @@
 <html>
 <head>
-<title>Account Registration
-</title>
-</head>
+		<title>Memes Cooked To Perfection</title>
+		<link rel = "stylesheet" type = "text/css"  href = "memes.css">
+		<link href="https://fonts.googleapis.com/css?family=Baloo+Chettan&display=swap" rel="stylesheet">
+		<style type = "text/css">
+			body {
+				font-family: 'Baloo Chettan', cursive;
+			}
+		</style>
+	</head>
 <body>
+	<div id = "header" style = "height: 50px;">
+			<form method="post" action="/home_u">
+				<button style = "float: left; margin-right: 0px; margin-left: 20px;" type="submit" name="button" value = "Home">Home</button>
+			</form>
+</div>
 
-{{{msg}}}
-
-
+<div style = "height: 280px;" id = "user">
 <form method="post" action="/registration">
-Username:<input type="text" style="background-color:{{{colorsU}}}" placeholder="Username" name="username" id="username"><br>
-Password:<input type="password" style="background-color:{{{colorsP}}}" placeholder="Password" name="password" id="Password"><br>
-Confirm Password:<input type="password" style="background-color:{{{colorsCP}}}" placeholder="Confirm Password" name="Confirm" id="Confirmation"><br>
-Birthday:<input type="date" style="background-color:{{{colorsB}}}" name="Birthday"><br>
-Email:<input type="text" style="background-color:{{{colorsE}}}" name="Email" placeholder="email" id="EmailAddress">
-<input type="submit" name="submit" >
+Username: <input type="text" style="background-color:{{{colorsU}}}; border-radius: 15px;" placeholder="Username" name="username" id="username"><br>
+Password: <input type="password" style="background-color:{{{colorsP}}}; border-radius: 15px;" placeholder="Password" name="password" id="Password"><br>
+Confirm Password: <input type="password" style="background-color:{{{colorsCP}}}; border-radius: 15px;" placeholder="Confirm Password" name="Confirm" id="Confirmation"><br>
+Birthday: <input type="date" style="background-color:{{{colorsB}}}; border-radius: 15px;" name="Birthday"><br>
+Email: <input type="text" style="background-color:{{{colorsE}}}; border-radius: 15px;" name="Email" placeholder="email" id="EmailAddress"><br>
+Profile Picture: <input type="file" name="pic" accept="image/*"><br>
+<input type="submit" name="button" value="Signup"><br>
 </form>
-<form method="get" action="/registration">
-<input type="submit" name="submit" value="cancel">
+<form method="post" action="/registration">
+<input type="submit" name="button" value="cancel">
 </form>
-
+<br/>
+<h2 style = "color: red;">{{{msg}}}</h2>
+</div>
 
 </body>
 </html>
