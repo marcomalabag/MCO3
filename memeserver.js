@@ -3,28 +3,15 @@ const app = express();
 const port = 9090;
 const cookieParser = require('cookie-parser')
 const fs = require('fs')
-const mongodb = require('mongodb')
-
-const client = mongodb.MongoClient;
-const url = "mongodb://localhost:27017"
 const {accounts} = require("./Accounts.js")
-const mongoose = require("mongoose")
+const {memes} = require("./memes.js")
+const {LikedMemes} = require("./LikedMemes.js")
 
 
 app.use(cookieParser());
 app.use(express.urlencoded());
 app.use(express.static(__dirname + '/public'));
 app.set('view engine', 'hbs')
-
-function addUser(accounts){
-	mongoose.connect(url, function(err){
-		accounts.save(function(err, u){
-			if(err) throw err;
-			console.log('Document inserted:')
-			mongoose.connection.close()
-		})
-	})
-}
 
 function redirection(req, res){
 	res.render('login.hbs', {msg:"Account does not exist"},
@@ -117,15 +104,33 @@ app.post('/registration', function(req, res){
 			valid = "False"
 		}
 		if(valid == "True"){
-			var newUser = new accounts({
-				Username:req.body.username,
-				Password:req.body.password,
-				Birthday:req.body.Birthday,
-				Email:req.body.Email,
-				profilepic:req.body.pic
+			accounts.findOne({Username:req.body.username}).then((doc)=>{
+				if(doc == null){
+					var newUser = new accounts({
+						Username:req.body.username,
+						Password:req.body.password,
+						Birthday:req.body.Birthday,
+						Email:req.body.Email,
+						profilepic:req.body.pic,
+						loggedIn:false,
+					})
+					newUser.save().then((doc)=>{
+						console.log("Successfully added: ", doc)
+					}, (err) => {
+						console.log(err);
+					})
+					res.redirect('/login')
+				}
+				else{
+					res.render('Registration.hbs', {msg:"Account already exists", colorsU:"red", colorsP:"red", colorsCP:"red", colorsB:"red", colorsE:"red"},
+					function(err, html){	
+						res.send(html)
+					})
+					valid = "False"
+				}
+			}, (err) => {
+				console.log(err);
 			})
-			addUser(newUser)
-			res.redirect('/login')
 		}
 	}
 	else if(req.body.button == "cancel"){
@@ -144,18 +149,26 @@ app.get('/login', function(req, res){
 })
 
 app.get('/profile', function(req, res){
-	res.render('profile.hbs', {User:"Clarence", Username:"Free_World"},
+	res.render('profile.hbs', {User:req.cookies.account.Username, username:req.cookies.account.Username, picture:req.cookies.account.profilepic},
 		function(err, html){
 			res.send(html)
 		})
 })
 
-app.post('/home_u', function(req, res){
-	/*
-	if(req.cookies.user == undefined){
-		res.redirect('/')
+app.post('/profile', function(req, res){
+	if(req.body.button == "Home"){
+		res.redirect('/home')
 	}
-	*/
+	else if(req.body.button == "LogOut"){
+		res.redirect('/logout')
+	}
+	else if(req.body.button == "EditProfile"){
+		res.redirect('/editprofile')
+	}
+})
+
+app.post('/home_u', function(req, res){
+	
 	if(req.body.button == "Home"){
 		res.render('home_unlog.hbs', 
 		function(err, html){
@@ -183,16 +196,35 @@ app.get('/home_u', function(req, res){
 		})
 })
 
+app.post('/home', function(req, res){
+	
+	if(req.body.button == "Home"){
+		res.redirect('/home')
+	}
+	else if(req.body.button == "LogOut")
+	{
+	   res.redirect('/logout')
+	}
+	else if(req.body.button == "Profile"){
+		res.redirect('/profile')
+	}		
+})
+
 app.get('/home', function(req, res){
-	/*
-	if(req.cookies.user == undefined){
+	
+	if(req.cookies.account == undefined){
 		res.redirect('/')
 	}
-	*/
-		res.render('home.hbs', {User:"Clarence", Username:"Free_World"}, 
-		function(err, html){
-			res.send(html)
-		})
+	else{
+		var i;
+		accounts.find({loggedIn:false}).then((doc)=>{
+			res.render('home.hbs', {User:req.cookies.account.Username, username:req.cookies.account.Username, picture:req.cookies.account.profilepic,
+			user: doc
+			});
+			}, (err) => {
+				console.log(err);
+			})
+	}
 })
 
 app.post('/login', function(req, res){
@@ -201,27 +233,39 @@ app.post('/login', function(req, res){
 		res.redirect('/home_u')
 	}
 	else if(req.body.button == "Login"){
-		var user = new accounts({Username: req.body.username, password: req.body.password, profilepic: req.body.pic})
-		console.log(findUser(accounts, {Username: req.body.username}))
-	    /*if(findUser(accounts, {Username: req.body.username})){
-			res.render('login.hbs', {msg:"Account does not exist"},
-			function(err, html){
-			res.send(html)
-			})
-		}
-		else{
-			if(findUser(accounts, {password: req.body.password}) == user.password){
-				res.cookie('user', user)
-				res.redirect('/')
-			}
-			else{
-				res.render('login.hbs', {msg:"Invalid password please try again"},
+		accounts.findOne({Username:req.body.username}).then((doc)=>{
+			if(doc == null){
+				res.render('login.hbs', {msg:"Account does not exist"},
 				function(err, html){
-					res.send(html)
+				res.send(html)
 				})
 			}
-		}
-		*/
+			else{
+				accounts.findOne({Password:req.body.password}).then((doc)=>{
+					if(doc == null){
+						res.render('login.hbs', {msg:"Invalid password please try again"},
+						function(err, html){
+							res.send(html)
+						})
+					}
+					else{
+						var user = new accounts({Username: req.body.username, password: req.body.password, profilepic: doc.profilepic})
+						accounts.findOneAndUpdate( {Username:req.body.username}, {loggedIn:true}).then((doc)=>{
+							
+						}, (err)=>{
+							console.log(err)
+						})
+						res.cookie('account', user)
+						res.redirect('/')
+					}
+				}, (err)=>{
+					console.log(err)
+				})
+			}
+		}, (err)=>{
+			console.log(err)
+		accounts.closeDatabase();	
+		})
 	}
 	else if(req.body.button == "Register"){
 		res.redirect('/registration')
@@ -235,22 +279,24 @@ app.post('/login', function(req, res){
 
 
 app.get('/', function(req, res){
-	if(req.cookies.user == undefined){
+	if(req.cookies.account == undefined){
 		res.redirect('/home_u')
 	}
 	else{
-		res.render('home.hbs', {username:req.cookies.user.username},
-		function(err, html){
-			res.send(html)
-		})
 		res.redirect('/home')
 	}
 })
 
-app.post('/logout', function(req, res){
-	res.clearCookie('user')
+app.get('/logout', function(req, res){
+	accounts.findOneAndUpdate( {Username:req.cookies.account.Username}, {loggedIn:false}).then((doc)=>{
+		
+	}, (err)=>{
+		console.log(err)
+	})
+	res.clearCookie('account')
 	res.redirect('/')
 })
+
 
 app.listen(port, function(){
 	console.log('App is listening to port ' +port);
