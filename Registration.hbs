@@ -12,7 +12,7 @@
 <body>
 	<div id = "header" style = "height: 50px;">
 			<form method="post" action="/home_u">
-				<button style = "float: left; margin-right: 0px; margin-left: 20px;" type="submit" name="button" value = "Home">Home</button>
+				<button style = "float: left; margin-right: 0px; margin-left: 20px;" type="submit" name="button" value = "Home" id="headerbutton">Home</button>
 			</form>
 </div>
 
@@ -24,10 +24,10 @@ Confirm Password: <input type="password" style="background-color:{{{colorsCP}}};
 Birthday: <input type="date" style="background-color:{{{colorsB}}}; border-radius: 15px;" name="Birthday"><br>
 Email: <input type="text" style="background-color:{{{colorsE}}}; border-radius: 15px;" name="Email" placeholder="email" id="EmailAddress"><br>
 Profile Picture: <input type="file" name="pic" accept="image/*"><br>
-<input type="submit" name="button" value="Signup"><br>
+<input type="submit" name="button" value="Signup" id="headerbutton"><br>
 </form>
 <form method="post" action="/registration">
-<input type="submit" name="button" value="cancel">
+<input type="submit" name="button" value="cancel" id="headerbutton">
 </form>
 <br/>
 <h2 style = "color: red;">{{{msg}}}</h2>
