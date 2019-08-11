@@ -13,7 +13,7 @@
 
 <div id = "header" style = "height: 50px;">
 			<form method="post" action="/login">
-				<button style = "float: left; margin-right: 0px; margin-left: 20px;" type="submit" name="button" value = "Home">Home</button>
+				<button style = "float: left; margin-right: 0px; margin-left: 20px;" type="submit" name="button" value = "Home" id="headerbutton">Home</button>
 			</form>
 </div>
 
@@ -21,15 +21,15 @@
 <form method="post" action="/login">
 Username: <input style = "border-radius: 15px;" type="text" name="username"><br>
 Password: <input style = "border-radius: 15px;" type="password" name="password"><br>
-<input type="submit" name="button" value="Login">
+<input type="submit" name="button" value="Login" id="headerbutton">
 </form>
 
 <form method="post" action="/login">
-<input type="submit" name="button" value="Cancel" ></input>
+<input type="submit" name="button" value="Cancel" id="headerbutton"></input>
 </form>
 
 <form method="post" action="/login">
-<button style = "width: 300px;" type="submit" name="button" value="Register"> Don't have an account? Register here.</button>
+<button style = "width: 300px;" type="submit" name="button" value="Register" id="headerbutton"> Don't have an account? Register here.</button>
 </form>
 <br/>
 <h2 style = "color: red;">{{{msg}}}</h2>
