@@ -13,10 +13,19 @@
 	<body>
 		<div id = "header">
 			<form method="post" action="/profile">
-				<button style = "float: left; margin-right: 0px; margin-left: 20px;" type="submit" name="button" value = "Home" id="headerbutton">Home</button>
+				<button type="submit" name="button" value = "LogOut" id="headerbutton">Log Out</button>
+			</form>
+		</div>
+		
+		<div id = "dash">
+			<form method="post" action="/profile">
+				<button style = "margin-left: 30px; margin-right: auto;" type="submit" name="button" value = "Home" id="headerbutton">Home</button>
 			</form>
 			<form method="post" action="/profile">
-				<button type="submit" name="button" value = "LogOut" id="headerbutton">Log Out</button>
+				<button style = "margin-left: 30px; margin-right: auto;" type="submit" name="button" value = "Upload" id="headerbutton">Upload</button>
+			</form>
+			<form method="post" action="/profile">
+				<button style = "margin-left: 30px; margin-right: auto;" type="submit" name="button" value = "Users" id="headerbutton">Users</button>
 			</form>
 		</div>
 		
@@ -30,20 +39,25 @@
 			</form>
 			<br/>
 			<hr/>
-			<p style = "text-align: center;">Description</p>
+			<p style = "text-align: center;"><br>{{description}}</p>
 		</div>
 		
-		<div id = "main">
-			<h2 style = "text-align:center;">{{User}}'s Memes</h2>
-			<hr/>
+		<div id = "main" style = "height: 10000px">
+		<h2 style = "text-align:center;">{{User}}'s Memes</h2>
+				<hr/>
+		{{#each memes}}
+			<img style = "float: left; margin-left: 150px; max-width: 7%; height: auto; border-radius: 75px; border-style: solid; border-color: pink; border-width: 5px; height: auto; float: left;" src = "{{this.UploaderPic}}">
+			<p style = "width: 100px; margin-left: 220px">@{{this.Uploader}}</p>
+			<p style = "font-size: 10px; color: grey; width: 300px; margin-left: 220px">{{this.UploadDate}}</p>
+			<a href = "http://localhost:9090/delete/{{this.Caption}}">	<button style = "float: right;font-size: 10px; width: 50px; margin-right: 100px;" type="submit" name="button" value = "Delete" id="deletebutton">Delete</button></a>
 			<br/>
-			<img style = "float: left; margin-left: 150px; max-width: 7%; height: auto; border-radius: 75px; border-style: solid; border-color: pink; border-width: 5px; height: auto; float: left;" src = "{{{picture}}}">
-			<p style = "width: 100px; margin-left: 220px">@{{username}}</p>
-			<img src = "mclovin.png" style = "border-radius: 15px; display: block; margin: 25px; margin-left: auto; margin-right: auto; border-style: solid; border-color: pink; min-width: 400px; border-width: 5px; max-width: 150%; height: auto;">
-			<img src = "down.png" style = "float: right; max-width: 5%; height: auto; margin-right: 150px;">
-			<img src = "ok.png" style = "float: right; max-width: 5%; height: auto; margin-right: 20px;">
-			<p style = "text-align: left; font-size: 20px; margin-left: 150px;">McLovin</p>
+			<a href = "http://localhost:9090/viewMeme/{{this.Caption}}"  type="submit"><img src = "{{this.Picture}}" value = "{{this.Picture}}" name="button" style = "border-radius: 15px; display: block; margin: 25px; margin-left: auto; margin-right: auto; border-style: solid; border-color: pink; min-width: 400px; border-width: 5px; max-width: 70%; height: auto;" id = "imagebutton"></a>
+			<a href=  "http://localhost:9090/download/{{this.Caption}}" type="submit"><img src = "down.png" style = "float: right; max-width: 5%; height: auto; margin-right: 150px;" id="headerbutton"><p style = "float: right; font-size: 10px;">{{this.NumDownloads}}</p></a>
+			<a href = "http://localhost:9090/likes/{{this.Caption}}"><img src = "ok.png" button type="submit" style = "float: right; max-width: 5%; height: auto; margin-right: 20px;" id="headerbutton"><p style = "float: right; font-size: 10px;">{{this.NumLikes}}</p></a>
+			<p style = "text-align: left; font-size: 20px; margin-left: 150px;">{{this.Caption}}</p><br>
 			<hr/>
+			<br><br>
+			{{/each}}
 		</div>
 	</body>
 </html>
