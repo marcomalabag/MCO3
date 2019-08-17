@@ -9,6 +9,7 @@ var accounts = mongoose.model("accounts", {
 	Username:String,
 	Password:String,
 	profilepic:String,
+	description:String,
 	Birthday:Date,
 	Email:String,
 	loggedIn:false,
