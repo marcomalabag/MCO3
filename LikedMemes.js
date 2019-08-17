@@ -6,7 +6,7 @@ mongoose.connect("mongodb://localhost:27017/Accounts", {
 })
 
 var LikedMemes = mongoose.model("LikedMemes", {
-	memefile:String,
+	Caption:String,
 	user:String,
 })
 
