@@ -1,0 +1,59 @@
+<html>
+	<head>
+		<title>Memes Cooked To Perfection</title>
+		<link rel = "stylesheet" type = "text/css"  href = "memes.css">
+		<link href="https://fonts.googleapis.com/css?family=Baloo+Chettan&display=swap" rel="stylesheet">
+		<style type = "text/css">
+			body {
+				font-family: 'Baloo Chettan', cursive;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<div id = "header">
+			<form method="post" action="/profile">
+				<button type="submit" name="button" value = "LogOut" id="headerbutton">Log Out</button>
+			</form>
+		</div>
+		
+		<div id = "dash">
+			<form method="post" action="/profile">
+				<button style = "margin-left: 30px; margin-right: auto;" type="submit" name="button" value = "Home" id="headerbutton">Home</button>
+			</form>
+			<form method="post" action="/profile">
+				<button style = "margin-left: 30px; margin-right: auto;" type="submit" name="button" value = "Upload" id="headerbutton">Upload</button>
+			</form>
+			<form method="post" action="/profile">
+				<button style = "margin-left: 30px; margin-right: auto;" type="submit" name="button" value = "Users" id="headerbutton">Users</button>
+			</form>
+		</div>
+		
+		<div id = "user">
+			
+			<img id = "pfp" style = "float: left;" src = "{{{picture}}}">
+			<p style = "width: 100px; margin-left: 110px;"><u>@{{User}}</u></p>
+			<p style = "width: 100px; margin-left: 110px;">{{Email}}</p>
+			<br><br>
+			<hr>
+			<p style = "text-align: center;"><br>{{description}}</p><br>
+
+		</div>
+		
+		<div id = "main" style = "height: 10000px">
+		<h2 style = "text-align:center;">{{User}}'s Memes</h2>
+				<hr/>
+		{{#each memes}}
+			<img style = "float: left; margin-left: 150px; max-width: 7%; height: auto; border-radius: 75px; border-style: solid; border-color: pink; border-width: 5px; height: auto; float: left;" src = "{{this.UploaderPic}}">
+			<p style = "width: 100px; margin-left: 220px">@{{this.Uploader}}</p>
+			<p style = "font-size: 10px; color: grey; width: 300px; margin-left: 220px">{{this.UploadDate}}</p>
+			<a href = "http://localhost:9090/viewMeme/{{this.Caption}}"  type="submit"><img src = "{{this.Picture}}" value = "{{this.Picture}}" name="button" style = "border-radius: 15px; display: block; margin: 25px; margin-left: auto; margin-right: auto; border-style: solid; border-color: pink; min-width: 400px; border-width: 5px; max-width: 70%; height: auto;" id = "imagebutton"></a>
+			<a href=  "http://localhost:9090/download/{{this.Caption}}" type="submit"><img src = "down.png" style = "float: right; max-width: 5%; height: auto; margin-right: 150px;" id="headerbutton"><p style = "float: right; font-size: 10px;">{{this.NumDownloads}}</p></a>
+			<a href = "http://localhost:9090//likes/{{this.Caption}}"><img src = "ok.png" button type="submit" style = "float: right; max-width: 5%; height: auto; margin-right: 20px;" id="headerbutton"><p style = "float: right; font-size: 10px;">{{this.NumLikes}}</p></a>
+			<p style = "text-align: left; font-size: 20px; margin-left: 150px;">{{this.Caption}}</p><br>
+			<hr/>
+			<br><br>
+			{{/each}}
+		</div>
+	</body>
+</html>

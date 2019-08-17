@@ -1,0 +1,57 @@
+<html>
+<head>
+		<title>Memes Cooked To Perfection</title>
+		<link rel = "stylesheet" type = "text/css"  href = "memes.css">
+		<link href="https://fonts.googleapis.com/css?family=Baloo+Chettan&display=swap" rel="stylesheet">
+		<style type = "text/css">
+			body {
+				font-family: 'Baloo Chettan', cursive;
+			}
+		</style>
+	</head>
+<body>
+	<div id = "header">
+			<form method="post" action="/profile">
+				<button type="submit" name="button" value = "LogOut" id="headerbutton">Log Out</button>
+			</form>
+		</div>
+		
+		<div id = "dash">
+			<form method="post" action="/profile">
+				<button style = "margin-left: 30px; margin-right: auto;" type="submit" name="button" value = "Home" id="headerbutton">Home</button>
+			</form>
+			<form method="post" action="/profile">
+				<button style = "margin-left: 30px; margin-right: auto;" type="submit" name="button" value = "Upload" id="headerbutton">Upload</button>
+			</form>
+			<form method="post" action="/profile">
+				<button style = "margin-left: 30px; margin-right: auto;" type="submit" name="button" value = "Users" id="headerbutton">Users</button>
+			</form>
+		</div>
+
+<div style = "height: 650px; width: 450px" id = "user">
+<h2 align = "center">Edit Profile</h2>
+<hr/>
+<form method="post" action="/editprofile">
+Name: {{User}}  - <input type="text" style="background-color:{{{colorsE}}}; border-radius: 15px;" placeholder="Name" name="name" id="name"><br>
+<input style = "width: 200px" type="submit" name="button" value="Change Name" id="headerbutton"/><br/>
+Username: @{{username}}  - <input type="text" style="background-color:{{{colorsE}}}; border-radius: 15px;" placeholder="Username" name="username" id="username"><br>
+<input style = "width: 200px" type="submit" name="button" value="Change Username" id="headerbutton"/><br/>
+Password: <input type="password" style="border-radius: 15px;" placeholder="Password" name="password" id="Password"><br>
+Confirm Password: <input type="password" style="border-radius: 15px;" placeholder="Confirm Password" name="Confirm" id="Confirmation"><br>
+<input style = "width: 200px" type="submit" name="button" value="Change Password" id="headerbutton"><br>
+Email: {{Email}} - <input type="text" style="background-color:{{{colorsE}}}; border-radius: 15px;" name="Email" placeholder="email" id="EmailAddress"><br>
+<input style = "width: 200px" type="submit" name="button" value="Change Email" id="headerbutton"></br>
+Profile Picture: <input type="file" name="pic" accept="image/*"><br>
+<input style = "width: 200px" type="submit" name="button" value="Change Picture" id="headerbutton"><br>
+Description: <input type="text" style="background-color:white; border-radius: 30px;" placeholder="Description" name="description" id="username" ><br>
+<input style = "width: 200px" type="submit" name="button" value="Change Description" id="headerbutton">
+</form>
+<form method="post" action="/registration">
+<input type="submit" name="button" value="Cancel" id="headerbutton">
+</form>
+<br/>
+<h2 style = "color: red;">{{{msg}}}</h2>
+</div>
+
+</body>
+</html>
