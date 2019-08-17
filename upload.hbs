@@ -1,0 +1,45 @@
+<html>
+<head>
+		<title>Memes Cooked To Perfection</title>
+		<link rel = "stylesheet" type = "text/css"  href = "memes.css">
+		<link href="https://fonts.googleapis.com/css?family=Baloo+Chettan&display=swap" rel="stylesheet">
+		<style type = "text/css">
+			body {
+				font-family: 'Baloo Chettan', cursive;
+			}
+		</style>
+	</head>
+<body>
+	<div id = "header">
+			<form method="post" action="/profile">
+				<button type="submit" name="button" value = "LogOut" id="headerbutton">Log Out</button>
+			</form>
+		</div>
+		
+		<div id = "dash">
+			<form method="post" action="/profile">
+				<button style = "margin-left: 30px; margin-right: auto;" type="submit" name="button" value = "Home" id="headerbutton">Home</button>
+			</form>
+			<form method="post" action="/profile">
+				<button style = "margin-left: 30px; margin-right: auto;" type="submit" name="button" value = "Upload" id="headerbutton">Upload</button>
+			</form>
+			<form method="post" action="/profile">
+				<button style = "margin-left: 30px; margin-right: auto;" type="submit" name="button" value = "Users" id="headerbutton">Users</button>
+			</form>
+		</div>
+
+<div style = "height: 300px;" id = "user">
+<h2>Upload Meme</h2>
+<hr/>
+<form method="post" action="/uploadmeme">
+Meme: <input type="file" name="pic" accept="image/*"><br><br><br>
+Caption: <input type="text" style = "height: 50px;" type="text" style="background-color:{{{colorsE}}}; border-radius: 15px;" placeholder="Caption" name="meme" id="meme"><br><br>
+<button style = " margin-right: 10px; margin-left: 5px;" type="submit" name="button" value = "Upload" id="headerbutton">Upload</button>
+<input style = "float: right;" type="submit" name="button" value="Cancel" id="headerbutton">
+</form>
+<br/>
+<h2 style = "color: red;">{{{msg}}}</h2>
+</div>
+
+</body>
+</html>

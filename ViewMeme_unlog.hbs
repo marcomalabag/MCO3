@@ -1,0 +1,36 @@
+<html>
+	<head>
+	<title>Memes Cooked To Perfection</title>
+		<link rel = "stylesheet" type = "text/css"  href = "memes.css">
+		<link href="https://fonts.googleapis.com/css?family=Baloo+Chettan&display=swap" rel="stylesheet">
+		<style type = "text/css">
+			body {
+				font-family: 'Baloo Chettan', cursive;
+			}
+		</style>
+		
+	</head>
+	
+	<body>
+	<div id = "header">
+	<form method="post" action="/home_u">
+				<button style = "float: left; margin-right: 0px; margin-left: 20px;" type="submit" name="button" value = "Home" id="headerbutton">Home</button>
+			</form>
+	<form method="post" action="/home_u">
+				<button type="submit" name="button" value = "Login" id="headerbutton">Login</button>
+			</form>
+			<form method="post" action="/home_u">
+				<button type="submit" name="button" value = "Sign Up" id="headerbutton">Sign Up</button>
+			</form>
+		</div>
+	<div id = "main" style = "margin-right: 445px; height: 1000px">
+	<img style = "float: left; margin-left: 150px; max-width: 7%; height: auto; border-radius: 75px; border-style: solid; border-color: pink; border-width: 5px; height: auto; float: left;" src = "{{this.UploaderPic}}">
+			<p style = "width: 100px; margin-left: 220px">@{{Uploader}}</p><br>
+			<image type = "submit" value = "{{this.Picture}}" name="button" img src = "{{this.Picture}}" style = "border-radius: 15px; display: block; margin: 25px; margin-left: auto; margin-right: auto; border-style: solid; border-color: pink; min-width: 400px; border-width: 5px; max-width: 70%; height: auto;" id = "imagebutton">
+			<p style = "text-align: left; font-size: 20px; margin-left: 150px;">{{Caption}}</p><br>
+			<hr/>
+			<br><br>
+	</div>
+	
+	</body>
+</html>
