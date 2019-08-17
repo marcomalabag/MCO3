@@ -9,8 +9,10 @@ var memes = mongoose.model("memes", {
 	Caption:String,
 	Picture:String,
 	Uploader:String,
-	AccountID:String,
-	UploadDate:Date
+	UploaderPic:String,
+	UploadDate:Date,
+	NumLikes:Number,
+	NumDownloads:Number
 })
 
 module.exports={
