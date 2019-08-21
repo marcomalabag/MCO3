@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 	<head>
 		<title>Memes Cooked To Perfection</title>
 		<link rel = "stylesheet" type = "text/css"  href = "memes.css">
@@ -8,52 +9,96 @@
 				font-family: 'Baloo Chettan', cursive;
 			}
 		</style>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+		 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+		 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 	</head>
 	
 	<body>
-		<div id = "header">
+	
+    <nav class="navbar navbar-expand-sm bg-info navbar-dark fixed-top">
+     <div class="container-fluid">
+     <div class="navbar-header">
+				<a class="navbar-brand" href="http://localhost:9090">Memes Cooked To Perfection</a>
+			</div>
 			<form method="post" action="/profile">
-				<button type="submit" name="button" value = "LogOut" id="headerbutton">Log Out</button>
+				<button type="submit" name="button" value = "Home" id="headerbutton" class="btn btn-info navbar-btn">Home</button>
 			</form>
-		</div>
+			<form method="post" action="/profile">
+				<button type="submit" name="button" value = "Upload" id="headerbutton" class="btn btn-info navbar-btn">Upload</button>
+			</form>
+			<form method="post" action="/profile">
+				<button type="submit" name="button" value = "Users" id="headerbutton" class="btn btn-info navbar-btn">Users</button>
+			</form>
+			<form method="post" action="/home">
+				<button type="submit" name="button" value = "Profile" id="headerbutton" class="btn btn-info navbar-btn" >Profile</button>
+			</form>
+			<div class="dropdown">
+				<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">Sort By:</button>
+			<br><div class="dropdown-menu">
+				<form method="post" action="/home">
+				<a class="dropdown-item"><button style = "margin-left: 30px; margin-right: auto;" type="submit" name="button" value = "Date" id="headerbutton" class="btn btn-info">Date</button></a>
+				</form>
+				<form method="post" action="/home">
+				<a class="dropdown-item"><button style = "margin-left: 30px; margin-right: auto;" type="submit" name="button" value = "Likes" id="headerbutton" class="btn btn-info ">Likes</button></a>
+				</form>
+				<a class="dropdown-item"><form method="post" action="/home">
+				<button style = "margin-left: 30px; margin-right: auto;" type="submit" name="button" value = "Downloads" id="headerbutton" class="btn btn-info ">Downloads</button></a>
+				</form></a>
+				<a class="dropdown-item"><form method="post" action="/home">
+				<button style = "margin-left: 30px; margin-right: auto;" type="submit" name="button" value = "MemeOfTheMonth" id="headerbutton" class="btn btn-info ">MemeOfTheMonth</button></a>
+				</form></a>
+				</div>
+			</div>
+			<ul class="nav navbar-nav navbar-right">
+				<li><form method="post" action="/profile">
+					<button type="submit" name="button" value = "LogOut" id="headerbutton" class="btn btn-info">Log Out</button>
+				</form></li>
+			</ul>		
+			</div>
+	</nav>
 		
-		<div id = "dash">
-			<form method="post" action="/profile">
-				<button style = "margin-left: 30px; margin-right: auto;" type="submit" name="button" value = "Home" id="headerbutton">Home</button>
-			</form>
-			<form method="post" action="/profile">
-				<button style = "margin-left: 30px; margin-right: auto;" type="submit" name="button" value = "Upload" id="headerbutton">Upload</button>
-			</form>
-			<form method="post" action="/profile">
-				<button style = "margin-left: 30px; margin-right: auto;" type="submit" name="button" value = "Users" id="headerbutton">Users</button>
-			</form>
-		</div>
-		
-		<div id = "user">
-			
-			<img id = "pfp" style = "float: left;" src = "{{{picture}}}">
-			<p style = "width: 100px; margin-left: 110px;"><u>@{{User}}</u></p>
-			<p style = "width: 100px; margin-left: 110px;">{{Email}}</p>
-			<br><br>
-			<hr>
-			<p style = "text-align: center;"><br>{{description}}</p><br>
+		<div class="container-fluid bg-1 text-center" style="margin-top:55px">    
+		<div class="row content">
 
+			<div class="col-sm-4 sidenav text-left">
+			<div class="well">
+			<div class="card c1" style="width:450px">
+			<div class="card-body">
+			<img id = "pfp" style = "float: left;" src = "{{{picture}}}" class="img-circle">
+			 <h5 class="card-title"><p style = "width: 200px; margin-left: 110px;" ><u><a href = "http://localhost:9090/profile/{{_idAccount}}"  class="card-link">@{{User}}</a></u></p></h5>
+			<h6 class="card-title"><p style = "width: 200px; margin-left: 110px;">{{Email}}</p></h6>
+			<hr/>
+			 <p class="card-text"><p style = "text-align: center;"><br>{{description}}</p></p>
+		</div>
+		</div>
+		</div>
 		</div>
 		
-		<div id = "main" style = "height: 10000px">
-		<h2 style = "text-align:center;">{{User}}'s Memes</h2>
-				<hr/>
-		{{#each memes}}
-			<img style = "float: left; margin-left: 150px; max-width: 7%; height: auto; border-radius: 75px; border-style: solid; border-color: pink; border-width: 5px; height: auto; float: left;" src = "{{this.UploaderPic}}">
-			<p style = "width: 100px; margin-left: 220px">@{{this.Uploader}}</p>
+		<div class="col-sm-8 text-left">
+		<h2 style = "text-align:center; margin-right: 10px">{{User}}'s Memes</h2>
+			{{#each memes}}
+			<div class="card c2" style="width:800px">
+			<div class = "card-header">
+			<img style = "float: left; margin-left: 150px; max-width: 7%; height: auto; border-radius: 75px; border-style: solid; border-color: pink; border-width: 5px; height: auto; float: left;" src = "{{this.UploaderPic}}" class="img-circle">
+			<a href = "http://localhost:9090/profile/{{this.idAccount}}"><p style = "width: 140px; margin-left: 220px">@{{this.Uploader}}</p></a>
 			<p style = "font-size: 10px; color: grey; width: 300px; margin-left: 220px">{{this.UploadDate}}</p>
-			<a href = "http://localhost:9090/viewMeme/{{this.Caption}}"  type="submit"><img src = "{{this.Picture}}" value = "{{this.Picture}}" name="button" style = "border-radius: 15px; display: block; margin: 25px; margin-left: auto; margin-right: auto; border-style: solid; border-color: pink; min-width: 400px; border-width: 5px; max-width: 70%; height: auto;" id = "imagebutton"></a>
-			<a href=  "http://localhost:9090/download/{{this.Caption}}" type="submit"><img src = "down.png" style = "float: right; max-width: 5%; height: auto; margin-right: 150px;" id="headerbutton"><p style = "float: right; font-size: 10px;">{{this.NumDownloads}}</p></a>
-			<a href = "http://localhost:9090//likes/{{this.Caption}}"><img src = "ok.png" button type="submit" style = "float: right; max-width: 5%; height: auto; margin-right: 20px;" id="headerbutton"><p style = "float: right; font-size: 10px;">{{this.NumLikes}}</p></a>
+			</div>
+			<div class = "card-body">
+			<a href = "http://localhost:9090/viewMeme/{{this._id}}"  ><img src = "{{this.Picture}}" value = "{{this.Picture}}" name="button" style = "border-radius: 15px; display: block; margin: 25px; margin-left: auto; margin-right: auto; border-style: solid; border-color: pink; min-width: 400px; border-width: 5px; max-width: 70%; height: auto;" id = "imagebutton"></a>
+			</div>
+			<div class = "card-footer">
+			<a href=  "http://localhost:9090/download/{{this._id}}" ><img src = "down.png" style = "float: right; max-width: 5%; height: auto; margin-right: 150px;" id="headerbutton"><p style = "float: right; font-size: 10px;">{{this.NumDownloads}}</p></a>
+			<a href = "http://localhost:9090/likes/{{this._id}}"><img src = "ok.png" style = "float: right; max-width: 5%; height: auto; margin-right: 20px;" id="headerbutton"><p style = "float: right; font-size: 10px;">{{this.NumLikes}}</p></a>
 			<p style = "text-align: left; font-size: 20px; margin-left: 150px;">{{this.Caption}}</p><br>
-			<hr/>
+			</div>
+			</div>
 			<br><br>
 			{{/each}}
+		</div>	
 		</div>
 	</body>
 </html>
