@@ -47,7 +47,7 @@ app.get('/likes/:_id', function(req, res){
 				}, (err)=>{
 					console.log(err)
 				})
-				res.redirect('/home')	
+				res.redirect('/home')
 			}
 		}, (err)=>{
 			
@@ -69,6 +69,7 @@ app.get('/download/:_id', function(req, res){
 				var filepath = __dirname + '/public/' + doc.Picture
 				var fileName = doc.Picture
 				res.download(filepath, fileName);
+				next();
 			}
 		}, (err)=>{
 			console.log(err)
@@ -200,95 +201,149 @@ app.get('/users', function(req, res){
 
 app.post('/editprofile', function(req, res){
 	if(req.body.button == "Change Name"){
-		
-		accounts.findOne({Username:req.body.name}).then((doc1)=>{
-			if(doc1 == null){
-				memes.updateMany({Uploader: req.cookies.account.Username}, {Uploader:req.body.name}).then((doc)=>{
-					console.log(doc)
-				}, (err)=>{
-					console.log(err)
-					})
-				
-				accounts.findOneAndUpdate( {Username:req.cookies.account.Username}, {Username:req.body.name}).then((doc)=>{
-					console.log(doc)
-					}, (err)=>{
-						console.log(err)
-					})
-				res.redirect('/logout')
-			}
-			else{
-				res.render('edit_profile.hbs', {User:req.cookies.account.Username, username:req.cookies.account.Username, Email: req.cookies.account.Email, msg: "Name has already been used.<br> Please enter another name"},
+		if(req.body.name == ""){
+			res.render('edit_profile.hbs', {User:req.cookies.account.Username, username:req.cookies.account.Username, Email: req.cookies.account.Email, msg: "Please enter a name"},
 				function(err, html){
 					res.send(html)
 				})
-			}
-		}, (err) =>{
-			console.log(err)
-		})
-	}
-	else if(req.body.button == "Change Password"){
-		
-		accounts.findOne({Username: req.cookies.account.Username}).then((doc2)=>{
-			if(doc2.Password != req.body.password){
-				res.render('edit_profile.hbs', {User:req.cookies.account.Username, username:req.cookies.account.Username, Email: req.cookies.account.Email, msg: "Incorrect password<br>Please enter again."},
-				function(err, html){
-					res.send(html)
-				})
-			}
-			else{
-				if(req.body.password == req.body.Confirm){
-					accounts.findOne({Username: req.cookies.account.Username}).then((doc1)=>{
-						accounts.findOneAndUpdate( {Password: doc1.Password}, {Password: req.body.New_Password}).then((doc)=>{
-							console.log(doc)
-						}, (err)=>{
-							console.log(err)
-						})
+		}
+		else{
+			accounts.findOne({Username:req.body.name}).then((doc1)=>{
+				if(doc1 == null){
+					memes.updateMany({Uploader: req.cookies.account.Username}, {Uploader:req.body.name}).then((doc)=>{
+						console.log(doc)
 					}, (err)=>{
 						console.log(err)
 					})
+					accounts.findOneAndUpdate( {Username:req.cookies.account.Username}, {Username:req.body.name}).then((doc)=>{
+						console.log(doc)
+					}, (err)=>{
+						console.log(err)
+					})
+					res.redirect('/logout')
 				}
 				else{
-					res.render('edit_profile.hbs', {User:req.cookies.account.Username, username:req.cookies.account.Username, Email: req.cookies.account.Email, msg: "Confirmation password and password do not match.<br>Please enter again."},
+					res.render('edit_profile.hbs', {User:req.cookies.account.Username, username:req.cookies.account.Username, Email: req.cookies.account.Email, msg: "Name has already been used.<br> Please enter another name"},
 					function(err, html){
 						res.send(html)
 					})
 				}
-				res.redirect('/home')
+			}, (err) =>{
+				console.log(err)
+			})
+		}
+	}
+	else if(req.body.button == "Change Password"){
+		
+		if(req.body.password == "" || req.body.Confirm == ""){
+			if(req.body.password == "" ){
+				res.render('edit_profile.hbs', {User:req.cookies.account.Username, username:req.cookies.account.Username, Email: req.cookies.account.Email, msg: "Please enter a password."},
+				function(err, html){
+					res.send(html)
+				})
 			}
-		}, (err)=>{
-			console.log(err)
-		})
+			else if(req.body.Confirm == ""){
+				res.render('edit_profile.hbs', {User:req.cookies.account.Username, username:req.cookies.account.Username, Email: req.cookies.account.Email, msg: "Please confirm the password."},
+				function(err, html){
+					res.send(html)
+				})
+			}
+		}
+		else{
+			accounts.findOne({Username: req.cookies.account.Username}).then((doc2)=>{
+				if(doc2.Password != req.body.password){
+					res.render('edit_profile.hbs', {User:req.cookies.account.Username, username:req.cookies.account.Username, Email: req.cookies.account.Email, msg: "Incorrect password<br>Please enter again."},
+					function(err, html){
+						res.send(html)
+					})
+				}
+				else{
+					if(req.body.password == req.body.Confirm){
+						accounts.findOne({Username: req.cookies.account.Username}).then((doc1)=>{
+							accounts.findOneAndUpdate( {Password: doc1.Password}, {Password: req.body.New_Password}).then((doc)=>{
+								console.log(doc)
+							}, (err)=>{
+								console.log(err)
+							})
+						}, (err)=>{
+							console.log(err)
+						})
+					}
+					else{
+						res.render('edit_profile.hbs', {User:req.cookies.account.Username, username:req.cookies.account.Username, Email: req.cookies.account.Email, msg: "Confirmation password and password do not match.<br>Please enter again."},
+						function(err, html){
+							res.send(html)
+						})
+					}
+					res.redirect('/home')
+				}
+			}, (err)=>{
+				console.log(err)
+			})
+		}
 	}
 	else if(req.body.button == "Change Email"){
-		accounts.findOneAndUpdate( {Email: req.cookies.account.Email}, {Email:req.body.Email}).then((doc)=>{
-			console.log(doc)
-		}, (err)=>{
-			console.log(err)
-		})
-		res.redirect('/logout')
+		if(req.body.Email == ""){
+			res.render('edit_profile.hbs', {User:req.cookies.account.Username, username:req.cookies.account.Username, Email: req.cookies.account.Email, msg: "Please enter an Email."},
+					function(err, html){
+						res.send(html)
+					})
+		}
+		else{
+			accounts.findOneAndUpdate( {Email: req.cookies.account.Email}, {Email:req.body.Email}).then((doc)=>{
+				console.log(doc)
+			}, (err)=>{
+				console.log(err)
+			})
+			res.redirect('/logout')
+		}
 	}
 	else if(req.body.button == "Change Picture"){
-		console.log(req.cookies.account.profilepic)
-		memes.updateMany({UploaderPic: req.cookies.account.profilepic}, {UploaderPic:req.body.pic}).then((doc)=>{
-			console.log(doc)
-		}, (err)=>{
-			console.log(err)
-		})
-	
-		accounts.findOneAndUpdate( {profilepic: req.cookies.account.profilepic}, {profilepic:req.body.pic}).then((doc)=>{
-			console.log(doc)
-		}, (err)=>{
-			console.log(err)
-		})
-		res.redirect('/logout')
+		if(req.body.pic == ""){
+			res.render('edit_profile.hbs', {User:req.cookies.account.Username, username:req.cookies.account.Username, Email: req.cookies.account.Email, msg: "Please enter a profile picture."},
+					function(err, html){
+						res.send(html)
+					})
+		}
+		else if(req.body.pic.indexOf(".jpeg") == -1 && req.body.pic.indexOf(".jpg") == -1 && req.body.pic.search(".gif") == -1 && req.body.pic.search(".png") == -1){
+			res.render('edit_profile.hbs', {User:req.cookies.account.Username, username:req.cookies.account.Username, Email: req.cookies.account.Email, msg: "Please enter an image file.<br> For the profile pic."},
+					function(err, html){
+						res.send(html)
+					})
+		}
+		else{
+			memes.updateMany({UploaderPic: req.cookies.account.profilepic}, {UploaderPic:req.body.pic}).then((doc)=>{
+				console.log(doc)
+			}, (err)=>{
+				console.log(err)
+			})
+			
+			accounts.findOneAndUpdate( {profilepic: req.cookies.account.profilepic}, {profilepic:req.body.pic}).then((doc)=>{
+				console.log(doc)
+			}, (err)=>{
+				console.log(err)
+			})
+			res.redirect('/logout')
+		}
 	}
 	else if(req.body.button == "Change Description"){
-		accounts.findOneAndUpdate( {description: req.cookies.account.description}, {description:req.body.description}).then((doc)=>{
-			console.log(doc)
-		}, (err)=>{
-			console.log(err)
-		})
-		res.redirect('/logout')
+		if(req.body.description == ""){
+			res.render('edit_profile.hbs', {User:req.cookies.account.Username, username:req.cookies.account.Username, Email: req.cookies.account.Email, msg: "Please enter a description."},
+					function(err, html){
+						res.send(html)
+					})
+		}
+		else{
+			accounts.findOneAndUpdate( {description: req.cookies.account.description}, {description:req.body.description}).then((doc)=>{
+				console.log(doc)
+			}, (err)=>{
+				console.log(err)
+			})
+			res.redirect('/logout')
+		}
+	}
+	else if(req.body.button == "Cancel"){
+		res.redirect('/editprofile')
 	}
 	
 })
@@ -385,19 +440,7 @@ app.post('/registration', function(req, res){
 							loggedIn:false,
 						})
 					}
-					else if(req.body.pic.search(".jpg") == -1){
-						res.render('Registration.hbs', {msg:"Please enter an image file"},
-						function(err, html){
-							res.send(html)
-						})
-					}
-					else if(req.body.pic.search(".gif") == -1){
-						res.render('Registration.hbs', {msg:"Please enter an image file"},
-						function(err, html){
-							res.send(html)
-						})
-					}
-					else if(req.body.pic.search(".gif") == -1){
+					else if(req.body.pic.indexOf(".jpeg") == -1 && req.body.pic.indexOf(".jpg") == -1 && req.body.pic.search(".gif") == -1 && req.body.pic.search(".png") == -1){
 						res.render('Registration.hbs', {msg:"Please enter an image file"},
 						function(err, html){
 							res.send(html)
