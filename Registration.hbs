@@ -1,5 +1,6 @@
-<html>
-<head>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
 		<title>Memes Cooked To Perfection</title>
 		<link rel = "stylesheet" type = "text/css"  href = "memes.css">
 		<link href="https://fonts.googleapis.com/css?family=Baloo+Chettan&display=swap" rel="stylesheet">
@@ -8,27 +9,57 @@
 				font-family: 'Baloo Chettan', cursive;
 			}
 		</style>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  
+		
 	</head>
-<body>
-	<div id = "header" style = "height: 50px;">
-			<form method="post" action="/registration">
-				<button style = "float: left; margin-right: 0px; margin-left: 20px;" type="submit" name="button" value = "Home" id="headerbutton">Home</button>
-			</form>
-</div>
+	
+	<body>
+		<nav class="navbar navbar-expand-sm bg-info navbar-dark fixed-top">
+     <div class="container-fluid">
+     <div class="navbar-header">
+				<a class="navbar-brand" href="http://localhost:9090">Memes Cooked To Perfection</a>
+			</div>
+			<ul class="nav navbar-nav navbar-right">
+			<li><form method="post" action="/home_u">
+				<button type="submit" name="button" value = "Login" id="headerbutton" class="btn btn-info "></span>Login</button>
+			</form></li>
+			</ul>		
+			</div>
+	</nav>
 
-<div style = "height: 280px;" id = "user">
+<div class="container-fluid bg-1 text-center" style="margin-top:150px; width: 600px"> 
 <form method="post" action="/registration">
-Username: <input type="text" style="background-color:{{{colorsU}}}; border-radius: 15px;" placeholder="Username" name="username" id="username"><br>
-Password: <input type="password" style="background-color:{{{colorsP}}}; border-radius: 15px;" placeholder="Password" name="password" id="Password"><br>
-Confirm Password: <input type="password" style="background-color:{{{colorsCP}}}; border-radius: 15px;" placeholder="Confirm Password" name="Confirm" id="Confirmation"><br>
-Birthday: <input type="date" style="background-color:{{{colorsB}}}; border-radius: 15px;" name="Birthday"><br>
-Description: <input type="text" style="background-color:white; border-radius: 30px;" placeholder="Description" name="description" id="username" ><br>
-Email: <input type="text" style="background-color:{{{colorsE}}}; border-radius: 15px;" name="Email" placeholder="email" id="EmailAddress"><br>
-Profile Picture: <input type="file" name="pic" accept="image/*"><br>
-<input type="submit" name="button" value="Signup" id="headerbutton"><br>
-</form>
+<div class="form-group">
+<label for="usr">Username:</label> <input type="text" style="background-color:{{{colorsU}}}; border-radius: 15px;" placeholder="Username" class="form-control" name="username" id="username"><br>
+</div>
+<div class="form-group">
+<label for="pwd">Password:</label> <input type="password" style="background-color:{{{colorsP}}}; border-radius: 15px;" placeholder="Password" class="form-control" name="password" id="Password"><br>
+</div>
+<div class="form-group">
+<label for="pwd">Confirm Password:</label> <input type="password" style="background-color:{{{colorsCP}}}; border-radius: 15px;" placeholder="Confirm Password" class="form-control" name="Confirm" id="Confirmation"><br>
+</div>
+<div class="form-group">
+Birthday: <input type="date" style="background-color:{{{colorsB}}}; border-radius: 15px;"  class="form-control" name="Birthday"><br>
+</div>
+<div class="form-group">
+Description: <input type="text" style="background-color:white; border-radius: 30px;" placeholder="Description" name="description" class="form-control" id="username" ><br>
+</div>
+<div class="form-group">
+Email: <input type="text" style="background-color:{{{colorsE}}}; border-radius: 15px;" name="Email" placeholder="email" class="form-control" id="EmailAddress"><br>
+</div>
+<div class="form-group">
+Profile Picture: <input type="file" name="pic" accept="image/*" class="form-control-file border"><br><br>
+</div>
+<button type="submit" name="button" value="Signup" id="headerbutton" class="btn btn-info ">Signup</button>
+</form><br>
 <form method="post" action="/registration">
-<input type="submit" name="button" value="cancel" id="headerbutton">
+<button type="submit" name="button" value="cancel" id="headerbutton" class="btn btn-info ">Cancel</button>
 </form>
 <br/>
 <h2 style = "color: red;">{{{msg}}}</h2>
