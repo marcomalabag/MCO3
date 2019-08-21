@@ -1,5 +1,6 @@
-<html>
-<head>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
 		<title>Memes Cooked To Perfection</title>
 		<link rel = "stylesheet" type = "text/css"  href = "memes.css">
 		<link href="https://fonts.googleapis.com/css?family=Baloo+Chettan&display=swap" rel="stylesheet">
@@ -8,31 +9,49 @@
 				font-family: 'Baloo Chettan', cursive;
 			}
 		</style>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  
+		
 	</head>
-<body>
+	
+	<body>
+		<nav class="navbar navbar-expand-sm bg-info navbar-dark fixed-top">
+     <div class="container-fluid">
+     <div class="navbar-header">
+				<a class="navbar-brand" href="http://localhost:9090">Memes Cooked To Perfection</a>
+			</div>
+			<ul class="nav navbar-nav navbar-right">
+			<li><form method="post" action="/home_u">
+				<button type="submit" name="button" value = "Sign Up" id="headerbutton" class="btn btn-info ">Sign Up</button>
+			</form></li>
+			</ul>		
+			</div>
+	</nav>	
 
-<div id = "header" style = "height: 50px;">
-			<form method="post" action="/login">
-				<button style = "float: left; margin-right: 0px; margin-left: 20px;" type="submit" name="button" value = "Home" id="headerbutton">Home</button>
-			</form>
+<div class="container-fluid bg-1 text-center" style="margin-top:200px; width: 400px"> 
+<form method="post" action="/login">
+<div class="form-group">
+ <label for="usr">Username:</label> <input style = "border-radius: 15px;" type="text" name="username" class="form-control" placeholder="Username">
 </div>
-
-<div style = "height: 270px;" id = "user">
-<form method="post" action="/login">
-Username: <input style = "border-radius: 15px;" type="text" name="username"><br>
-Password: <input style = "border-radius: 15px;" type="password" name="password"><br>
-<input type="submit" name="button" value="Login" id="headerbutton">
+<div class="form-group">
+<label for="pwd">Password:</label> <input style = "border-radius: 15px;" type="password" name="password" class="form-control" placeholder="Password"><br>
+<button type="submit"name="button" value="Login" id="headerbutton" class="btn btn-info"/>Login</button>
+</div>
 </form>
 
-<form method="post" action="/login">
-<input type="submit" name="button" value="Cancel" id="headerbutton"></input>
-</form>
 
 <form method="post" action="/login">
-<button style = "width: 300px;" type="submit" name="button" value="Register" id="headerbutton"> Don't have an account? Register here.</button>
+<div class="form-group">
+<button type="submit" name="button" value="Cancel" id="headerbutton" class="btn btn-info">Cancel</button>
+</div>
 </form>
+
 <br/>
 <h2 style = "color: red;">{{{msg}}}</h2>
-</div>
 </body>
 </html>
