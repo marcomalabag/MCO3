@@ -11,10 +11,68 @@ button {
 	color: #FFFF99;
 }
 
+.c1{
+	margin: 15px;
+	padding: 15px;
+	border-radius: 20px;
+}
+
+.c2{
+	margin: 15px;
+	padding: 15px;
+	border-radius: 20px;
+}
+
 #headerbutton:hover{
 	 box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
-	 background-color: #4CAF50; /* Green */
-	 color: white;
+	 background-color: #FFFF99;
+	 color: #add8e6;
+}
+
+.bg-0{
+	background-color: pink;
+}
+
+.bg-1{
+	background-color: #add8e6;
+}
+
+#deletebutton{
+	 background-color: red;
+
+}
+
+.btn{
+	color: yellow;
+	background-color: yellow;
+}
+
+.btn-info{
+	color: yellow;
+	background-color: yellow;
+}
+
+.btn-group-vertical{
+	margin: 15px;
+	padding: 15px;
+	border-radius: 20px;
+	background-color: white;
+	border-color: pink;
+	border-style: solid;
+	border-width: 10px;
+	float: left;
+	width: 230px;
+	height: 350px;
+}
+
+#deletebutton:hover{
+	 box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+	 background-color: #FFFF99;
+	 color: red;
+}
+
+#imagebutton:hover{
+	box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
 input[type = "submit"]{
@@ -27,6 +85,7 @@ input[type = "submit"]{
 	font-size: 20px;
 	font-family: inherit;
 	color: #FFFF99;
+	
 }
 
 #header {
@@ -34,6 +93,19 @@ input[type = "submit"]{
 	padding: 10px;
 	color: black;
 	text-align: right;
+}
+
+#dash {
+	margin: 15px;
+	padding: 15px;
+	border-radius: 20px;
+	background-color: white;
+	border-color: pink;
+	border-style: solid;
+	border-width: 10px;
+	float: left;
+	width: 215px;
+	height: 450px;
 }
 
 #user {
@@ -46,7 +118,7 @@ input[type = "submit"]{
 	border-width: 10px;
 	float:right;
 	width: 350px;
-	height: 250px;
+	height: 350px;
 }
 
 #main{
