@@ -1,41 +1,78 @@
-<html>
-<head>
+!DOCTYPE html>
+<html lang="en">
+	<head>
 		<title>Memes Cooked To Perfection</title>
 		<link rel = "stylesheet" type = "text/css"  href = "memes.css">
 		<link href="https://fonts.googleapis.com/css?family=Baloo+Chettan&display=swap" rel="stylesheet">
+
 		<style type = "text/css">
 			body {
 				font-family: 'Baloo Chettan', cursive;
 			}
 		</style>
-	</head>
-<body>
-	<div id = "header">
-			<form method="post" action="/profile">
-				<button type="submit" name="button" value = "LogOut" id="headerbutton">Log Out</button>
-			</form>
-		</div>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 		
-		<div id = "dash">
+	</head>
+	
+	<body>
+	
+	<nav class="navbar navbar-expand-sm bg-info navbar-dark fixed-top">
+     <div class="container-fluid">
+     <div class="navbar-header">
+				<a class="navbar-brand" href="http://localhost:9090">Memes Cooked To Perfection</a>
+			</div>
 			<form method="post" action="/profile">
-				<button style = "margin-left: 30px; margin-right: auto;" type="submit" name="button" value = "Home" id="headerbutton">Home</button>
+				<button type="submit" name="button" value = "Home" id="headerbutton" class="btn btn-info navbar-btn">Home</button>
 			</form>
 			<form method="post" action="/profile">
-				<button style = "margin-left: 30px; margin-right: auto;" type="submit" name="button" value = "Upload" id="headerbutton">Upload</button>
+				<button type="submit" name="button" value = "Upload" id="headerbutton" class="btn btn-info navbar-btn">Upload</button>
 			</form>
 			<form method="post" action="/profile">
-				<button style = "margin-left: 30px; margin-right: auto;" type="submit" name="button" value = "Users" id="headerbutton">Users</button>
+				<button type="submit" name="button" value = "Users" id="headerbutton" class="btn btn-info navbar-btn">Users</button>
 			</form>
-		</div>
+			<form method="post" action="/home">
+				<button type="submit" name="button" value = "Profile" id="headerbutton" class="btn btn-info navbar-btn" >Profile</button>
+			</form>
+			<div class="dropdown">
+				<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">Sort By:</button>
+			<br><div class="dropdown-menu">
+				<form method="post" action="/home">
+				<a class="dropdown-item"><button style = "margin-left: 30px; margin-right: auto;" type="submit" name="button" value = "Date" id="headerbutton" class="btn btn-info">Date</button></a>
+				</form>
+				<form method="post" action="/home">
+				<a class="dropdown-item"><button style = "margin-left: 30px; margin-right: auto;" type="submit" name="button" value = "Likes" id="headerbutton" class="btn btn-info ">Likes</button></a>
+				</form>
+				<a class="dropdown-item"><form method="post" action="/home">
+				<button style = "margin-left: 30px; margin-right: auto;" type="submit" name="button" value = "Downloads" id="headerbutton" class="btn btn-info ">Downloads</button></a>
+				</form></a>
+				</div>
+			</div>
+			<ul class="nav navbar-nav navbar-right">
+				<li><form method="post" action="/profile">
+					<button type="submit" name="button" value = "LogOut" id="headerbutton" class="btn btn-info">Log Out</button>
+				</form></li>
+			</ul>		
+			</div>
+	</nav>	
+<div class="container-fluid bg-1 text-center" style="margin-top:150px; width: 600px"> 	
 
-<div style = "height: 300px;" id = "user">
 <h2>Upload Meme</h2>
 <hr/>
+
 <form method="post" action="/uploadmeme">
-Meme: <input type="file" name="pic" accept="image/*"><br><br><br>
-Caption: <input type="text" style = "height: 50px;" type="text" style="background-color:{{{colorsE}}}; border-radius: 15px;" placeholder="Caption" name="meme" id="meme"><br><br>
-<button style = " margin-right: 10px; margin-left: 5px;" type="submit" name="button" value = "Upload" id="headerbutton">Upload</button>
-<input style = "float: right;" type="submit" name="button" value="Cancel" id="headerbutton">
+<div class="form-group">
+<label for="usr">Meme:</label> <input type="file" name="pic" accept="image/*" class="form-control-file border"><br><br><br>
+</div>
+<div class="form-group">
+<label for="usr">Caption: </label> <textarea class="form-control" rows="5" style = "height: 50px;" type="textarea" style="background-color:{{{colorsE}}}; border-radius: 15px;" placeholder="Caption" name="meme" id="meme" ></textarea><br><br>
+</div>
+<button style = " margin-right: 10px; margin-left: 5px;" type="submit" name="button" value = "Upload" id="headerbutton" class="btn btn-info ">Upload</button>
+<button style = "float: right;" type="submit" name="button" value="Cancel" id="headerbutton" class="btn btn-info ">Cancel</button>
 </form>
 <br/>
 <h2 style = "color: red;">{{{msg}}}</h2>
