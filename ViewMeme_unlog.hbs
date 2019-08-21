@@ -1,6 +1,7 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 	<head>
-	<title>Memes Cooked To Perfection</title>
+		<title>Memes Cooked To Perfection</title>
 		<link rel = "stylesheet" type = "text/css"  href = "memes.css">
 		<link href="https://fonts.googleapis.com/css?family=Baloo+Chettan&display=swap" rel="stylesheet">
 		<style type = "text/css">
@@ -8,29 +9,51 @@
 				font-family: 'Baloo Chettan', cursive;
 			}
 		</style>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  
 		
 	</head>
 	
 	<body>
-	<div id = "header">
-	<form method="post" action="/home_u">
-				<button style = "float: left; margin-right: 0px; margin-left: 20px;" type="submit" name="button" value = "Home" id="headerbutton">Home</button>
-			</form>
-	<form method="post" action="/home_u">
-				<button type="submit" name="button" value = "Login" id="headerbutton">Login</button>
-			</form>
-			<form method="post" action="/home_u">
-				<button type="submit" name="button" value = "Sign Up" id="headerbutton">Sign Up</button>
-			</form>
-		</div>
-	<div id = "main" style = "margin-right: 445px; height: 1000px">
-	<img style = "float: left; margin-left: 150px; max-width: 7%; height: auto; border-radius: 75px; border-style: solid; border-color: pink; border-width: 5px; height: auto; float: left;" src = "{{this.UploaderPic}}">
-			<p style = "width: 100px; margin-left: 220px">@{{Uploader}}</p><br>
-			<image type = "submit" value = "{{this.Picture}}" name="button" img src = "{{this.Picture}}" style = "border-radius: 15px; display: block; margin: 25px; margin-left: auto; margin-right: auto; border-style: solid; border-color: pink; min-width: 400px; border-width: 5px; max-width: 70%; height: auto;" id = "imagebutton">
+		<nav class="navbar navbar-expand-sm bg-info navbar-dark fixed-top">
+     <div class="container-fluid">
+     <div class="navbar-header">
+				<a class="navbar-brand" href="http://localhost:9090">Memes Cooked To Perfection</a>
+			</div>
+			<ul class="nav navbar-nav navbar-right">
+			<li><form method="post" action="/home_u">
+				<button type="submit" name="button" value = "Sign Up" id="headerbutton" class="btn btn-info ">Sign Up</button>
+			</form></li>
+			<li><form method="post" action="/home_u">
+				<button type="submit" name="button" value = "Login" id="headerbutton" class="btn btn-info "></span>Login</button>
+			</form></li>
+			</ul>		
+			</div>
+	</nav>	
+	<div class="container-fluid bg-1 text-center" style="margin-top:55px; ">    
+		<div class="row content">
+		<div class="col-sm-8 text-left">
+			<div class="card c2" style="width:800px height:800px">
+			<div class = "card-header">
+			<img style = "float: left; margin-left: 150px; max-width: 7%; height: auto; border-radius: 75px; border-style: solid; border-color: pink; border-width: 5px; height: auto; float: left;" src = "{{UploaderPic}}" class="img-circle">
+			<p style = "width: 140px; margin-left: 220px">@{{Uploader}}</p>
+			<p style = "font-size: 10px; color: grey; width: 300px; margin-left: 220px">{{UploadDate}}</p>
+			</div>
+			<div class = "card-body">
+			<a href = "http://localhost:9090/viewMeme/{{_id}}"  ><img src = "{{Picture}}" value = "{{Picture}}" name="button" style = "border-radius: 15px; display: block; margin: 25px; margin-left: auto; margin-right: auto; border-style: solid; border-color: pink; min-width: 400px; border-width: 5px; max-width: 70%; height: auto;" id = "imagebutton"></a>
+			</div>
+			<div class = "card-footer">
 			<p style = "text-align: left; font-size: 20px; margin-left: 150px;">{{Caption}}</p><br>
-			<hr/>
+			</div>
+			</div>
 			<br><br>
-	</div>
+		</div>	
+		</div>
 	
 	</body>
 </html>
