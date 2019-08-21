@@ -12,7 +12,8 @@ var memes = mongoose.model("memes", {
 	UploaderPic:String,
 	UploadDate:Date,
 	NumLikes:Number,
-	NumDownloads:Number
+	NumDownloads:Number,
+	idAccount:String
 })
 
 module.exports={
