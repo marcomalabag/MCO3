@@ -1,57 +1,102 @@
-<html>
-<head>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
 		<title>Memes Cooked To Perfection</title>
 		<link rel = "stylesheet" type = "text/css"  href = "memes.css">
 		<link href="https://fonts.googleapis.com/css?family=Baloo+Chettan&display=swap" rel="stylesheet">
+
 		<style type = "text/css">
 			body {
 				font-family: 'Baloo Chettan', cursive;
 			}
 		</style>
-	</head>
-<body>
-	<div id = "header">
-			<form method="post" action="/profile">
-				<button type="submit" name="button" value = "LogOut" id="headerbutton">Log Out</button>
-			</form>
-		</div>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 		
-		<div id = "dash">
+	</head>
+	
+	<body>
+	
+	<nav class="navbar navbar-expand-sm bg-info navbar-dark fixed-top">
+     <div class="container-fluid">
+     <div class="navbar-header">
+				<a class="navbar-brand" href="http://localhost:9090">Memes Cooked To Perfection</a>
+			</div>
 			<form method="post" action="/profile">
-				<button style = "margin-left: 30px; margin-right: auto;" type="submit" name="button" value = "Home" id="headerbutton">Home</button>
+				<button type="submit" name="button" value = "Home" id="headerbutton" class="btn btn-info navbar-btn">Home</button>
 			</form>
 			<form method="post" action="/profile">
-				<button style = "margin-left: 30px; margin-right: auto;" type="submit" name="button" value = "Upload" id="headerbutton">Upload</button>
+				<button type="submit" name="button" value = "Upload" id="headerbutton" class="btn btn-info navbar-btn">Upload</button>
 			</form>
 			<form method="post" action="/profile">
-				<button style = "margin-left: 30px; margin-right: auto;" type="submit" name="button" value = "Users" id="headerbutton">Users</button>
+				<button type="submit" name="button" value = "Users" id="headerbutton" class="btn btn-info navbar-btn">Users</button>
 			</form>
-		</div>
+			<form method="post" action="/home">
+				<button type="submit" name="button" value = "Profile" id="headerbutton" class="btn btn-info navbar-btn" >Profile</button>
+			</form>
+			<div class="dropdown">
+				<button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">Sort By:</button>
+			<br><div class="dropdown-menu">
+				<form method="post" action="/home">
+				<a class="dropdown-item"><button style = "margin-left: 30px; margin-right: auto;" type="submit" name="button" value = "Date" id="headerbutton" class="btn btn-info">Date</button></a>
+				</form>
+				<form method="post" action="/home">
+				<a class="dropdown-item"><button style = "margin-left: 30px; margin-right: auto;" type="submit" name="button" value = "Likes" id="headerbutton" class="btn btn-info ">Likes</button></a>
+				</form>
+				<a class="dropdown-item"><form method="post" action="/home">
+				<button style = "margin-left: 30px; margin-right: auto;" type="submit" name="button" value = "Downloads" id="headerbutton" class="btn btn-info ">Downloads</button></a>
+				</form></a>
+				<a class="dropdown-item"><form method="post" action="/home">
+				<button style = "margin-left: 30px; margin-right: auto;" type="submit" name="button" value = "MemeOfTheMonth" id="headerbutton" class="btn btn-info ">MemeOfTheMonth</button></a>
+				</form></a>
+				</div>
+			</div>
+			<ul class="nav navbar-nav navbar-right">
+				<li><form method="post" action="/profile">
+					<button type="submit" name="button" value = "LogOut" id="headerbutton" class="btn btn-info">Log Out</button>
+				</form></li>
+			</ul>		
+			</div>
+	</nav>	
 
-<div style = "height: 650px; width: 450px" id = "user">
+<div class="container-fluid bg-1 text-center" style="margin-top:150px; width: 600px">
 <h2 align = "center">Edit Profile</h2>
 <hr/>
 <form method="post" action="/editprofile">
-Name: {{User}}  - <input type="text" style="background-color:{{{colorsE}}}; border-radius: 15px;" placeholder="Name" name="name" id="name"><br>
-<input style = "width: 200px" type="submit" name="button" value="Change Name" id="headerbutton"/><br/>
-Username: @{{username}}  - <input type="text" style="background-color:{{{colorsE}}}; border-radius: 15px;" placeholder="Username" name="username" id="username"><br>
-<input style = "width: 200px" type="submit" name="button" value="Change Username" id="headerbutton"/><br/>
-Password: <input type="password" style="border-radius: 15px;" placeholder="Password" name="password" id="Password"><br>
-Confirm Password: <input type="password" style="border-radius: 15px;" placeholder="Confirm Password" name="Confirm" id="Confirmation"><br>
-<input style = "width: 200px" type="submit" name="button" value="Change Password" id="headerbutton"><br>
-Email: {{Email}} - <input type="text" style="background-color:{{{colorsE}}}; border-radius: 15px;" name="Email" placeholder="email" id="EmailAddress"><br>
-<input style = "width: 200px" type="submit" name="button" value="Change Email" id="headerbutton"></br>
-Profile Picture: <input type="file" name="pic" accept="image/*"><br>
-<input style = "width: 200px" type="submit" name="button" value="Change Picture" id="headerbutton"><br>
-Description: <input type="text" style="background-color:white; border-radius: 30px;" placeholder="Description" name="description" id="username" ><br>
-<input style = "width: 200px" type="submit" name="button" value="Change Description" id="headerbutton">
+<div class="form-group">
+Name: {{User}}  - <input type="text" style="background-color:{{{colorsE}}}; border-radius: 15px;" placeholder="Name" name="name" id="name" class="form-control"><br>
+<button style = "width: 200px" type="submit" name="button" value="Change Name" id="headerbutton" class="btn btn-info ">Change Name</button><br/>
+</div>
+<div class="form-group">
+Password: <input type="password" style="border-radius: 15px;" placeholder="Password" name="password" id="Password" class="form-control"><br>
+Confirm Password: <input type="password" style="border-radius: 15px;" placeholder="Confirm Password" name="Confirm" id="Confirmation" class="form-control"><br>
+New Password: <input type="password" style="border-radius: 15px;" placeholder="New Password" name="New_Password" id="Confirmation" class="form-control"><br>
+<button style = "width: 200px" type="submit" name="button" value="Change Password" id="headerbutton" class="btn btn-info ">Change Password</button><br>
+</div>
+<div class ="form-group">
+Email: {{Email}} - <input type="text" style="background-color:{{{colorsE}}}; border-radius: 15px;" name="Email" placeholder="email" id="EmailAddress" class="form-control"><br>
+<button style = "width: 200px" type="submit" name="button" value="Change Email" id="headerbutton" class="btn btn-info ">Change Email</button></br>
+</div>
+<div class = "form-group">
+Profile Picture: <input type="file" name="pic" accept="image/*" class="form-control-file border"><br>
+<button style = "width: 200px" type="submit" name="button" value="Change Picture" id="headerbutton" class="btn btn-info ">Change Profile Picture</button><br>
+</div>
+<div class = "form-group">
+Description: <input type="text" style="background-color:white; border-radius: 30px;" placeholder="Description" name="description" id="username" class="form-control"><br>
+<button style = "width: 200px" type="submit" name="button" value="Change Description" id="headerbutton" class="btn btn-info ">Change Description</button>
+</div>
 </form>
+<br>
 <form method="post" action="/registration">
-<input type="submit" name="button" value="Cancel" id="headerbutton">
+<button type="submit" name="button" value="Cancel" id="headerbutton" class="btn btn-info ">Cancel</button>
 </form>
 <br/>
 <h2 style = "color: red;">{{{msg}}}</h2>
-</div>
+
 
 </body>
 </html>
